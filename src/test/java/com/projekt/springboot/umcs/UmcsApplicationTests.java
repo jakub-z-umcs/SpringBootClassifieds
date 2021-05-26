@@ -1,10 +1,10 @@
-package com.projekt.springboot;
+package com.projekt.springboot.umcs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class UmcsApplicationTests {
 
 	@Test
 	void contextLoads() {
