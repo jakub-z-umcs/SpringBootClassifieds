@@ -9,7 +9,4 @@ import java.util.Optional;
 @Repository
 public interface AdRepository
         extends JpaRepository<Ad, Long> {
-
-    @Query("SELECT s FROM Ad s WHERE s.email = ?1")
-    Optional<Ad> findStudentByEmail(String email);
 }

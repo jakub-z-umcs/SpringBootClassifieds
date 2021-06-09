@@ -15,21 +15,7 @@ public class AdConfig {
     CommandLineRunner commandLineRunner(
             AdRepository repository) {
         return args -> {
-            Ad ad1 = new Ad(
-                    "Mariam",
-                    "maria@wa.ld",
-                    LocalDate.of(2000, Month.JANUARY, 5)
-            );
 
-            Ad ad2 = new Ad(
-                    "Angelika",
-                    "lika@ange.ld",
-                    LocalDate.of(2003, Month.JANUARY, 2)
-            );
-
-            repository.saveAll(
-                    List.of(ad1, ad2)
-            );
         };
     }
 }

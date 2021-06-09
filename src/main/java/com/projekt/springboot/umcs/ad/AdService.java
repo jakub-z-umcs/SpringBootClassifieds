@@ -18,33 +18,28 @@ public class AdService {
         this.adRepository = adRepository;
     }
 
-    public List<Ad> getStudents() {
+    public List<Ad> getAds() {
         return adRepository.findAll();
     }
 
-    public void addNewStudent(Ad ad) {
-        Optional<Ad> studentOptional = adRepository.findStudentByEmail(ad.getEmail());
-        if (studentOptional.isPresent()) {
-            throw new IllegalStateException("email taken");
-        }
+    public void addNewAd(Ad ad) {
         adRepository.save(ad);
-        System.out.println(ad);
     }
 
-    public void deleteStudent(Long studentId) {
-        boolean exists = adRepository.existsById(studentId);
+    public void deleteAd(Long AdId) {
+        boolean exists = adRepository.existsById(AdId);
         if (!exists) {
             throw new IllegalStateException(
-                    "student with id " + studentId + " does not exists.");
+                    "Ad with id " + AdId + " does not exists.");
         }
-        adRepository.deleteById(studentId);
+        adRepository.deleteById(AdId);
 
     }
 
     @Transactional
-    public void updateStudent(Long studentId, String name, String email) {
-        Ad ad = adRepository.findById(studentId).orElseThrow(() -> new IllegalStateException(
-                "student with id " + studentId + " does not exist"));
+    public void updateAd(Long AdId, String name, String email) {
+        Ad ad = adRepository.findById(AdId).orElseThrow(() -> new IllegalStateException(
+                "Ad with id " + AdId + " does not exist"));
 
         if (name != null && !Objects.equals(ad.getName(), name)) {
             ad.setName(name);

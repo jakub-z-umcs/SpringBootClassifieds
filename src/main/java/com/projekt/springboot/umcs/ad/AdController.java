@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="api/v1/students")
+@RequestMapping(path="api/v1/ads")
 public class AdController {
 
     private final com.projekt.springboot.umcs.ad.AdService adService;
@@ -17,25 +17,25 @@ public class AdController {
     }
 
     @GetMapping
-    public List<Ad> getStudents() {
-        return adService.getStudents();
+    public List<Ad> getAds() {
+        return adService.getAds();
     }
 
     @PostMapping
-    public void registerNewStudent(@RequestBody Ad ad) {
-        adService.addNewStudent(ad);
+    public void addNewAd(@RequestBody Ad ad) {
+        adService.addNewAd(ad);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteStudent(@PathVariable("studentId") Long studentId) {
-        adService.deleteStudent(studentId);
+    public void deleteAd(@PathVariable("AdId") Long AdId) {
+        adService.deleteAd(AdId);
     }
 
     @PutMapping(path = "{id}")
-    public void updateStudent(
+    public void updateAd(
             @PathVariable("id") Long id,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email) {
-        adService.updateStudent(studentId, name, email);
+        adService.updateAd(id, name, email);
     }
 }
