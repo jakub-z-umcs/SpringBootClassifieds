@@ -31,11 +31,10 @@ public class AdController {
         adService.deleteAd(AdId);
     }
 
-    @PutMapping(path = "{id}")
+    @PatchMapping(path = "{id}")
     public void updateAd(
             @PathVariable("id") Long id,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email) {
-        adService.updateAd(id, name, email);
+            @RequestParam(required = false) String title) {
+        adService.updateAd(id, title);
     }
 }

@@ -2,6 +2,7 @@ package com.projekt.springboot.umcs.ad;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 
 @Entity
@@ -19,10 +20,13 @@ public class Ad {
     )
 
     private Long id;
-    private String name;
+    private String title;
+    private String description;
+    private int price_in_cents;
+    private LocalDateTime created_at;
 
-    public Ad(String name) {
-        this.name = name;
+    public Ad(String title, String description, int price_in_cents, LocalDateTime created_at) {
+        this.title = title;
     }
 
     public Ad() {
@@ -32,11 +36,11 @@ public class Ad {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
