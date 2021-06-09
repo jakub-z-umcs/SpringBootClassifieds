@@ -37,14 +37,13 @@ public class AdService {
     }
 
     @Transactional
-    public void updateAd(Long AdId, String name, String email) {
+    public void updateAd(Long AdId, String name) {
         Ad ad = adRepository.findById(AdId).orElseThrow(() -> new IllegalStateException(
                 "Ad with id " + AdId + " does not exist"));
 
         if (name != null && !Objects.equals(ad.getName(), name)) {
             ad.setName(name);
         }
-        ad.setEmail(email);
     }
 }
 
