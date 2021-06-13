@@ -22,6 +22,10 @@ public class AdService {
         return adRepository.findAll();
     }
 
+    public Ad getAd(Long AdId) {
+        return adRepository.getById(AdId);
+    }
+
     public void addNewAd(Ad ad) {
         adRepository.save(ad);
     }

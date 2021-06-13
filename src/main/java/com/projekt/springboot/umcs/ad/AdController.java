@@ -21,13 +21,18 @@ public class AdController {
         return adService.getAds();
     }
 
+    @GetMapping(path = "{id}")
+    public Ad getAd(@PathVariable("id") Long AdId) {
+        return adService.getAd(AdId);
+    }
+
     @PostMapping
     public void addNewAd(@RequestBody Ad ad) {
         adService.addNewAd(ad);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteAd(@PathVariable("AdId") Long AdId) {
+    public void deleteAd(@PathVariable("id") Long AdId) {
         adService.deleteAd(AdId);
     }
 

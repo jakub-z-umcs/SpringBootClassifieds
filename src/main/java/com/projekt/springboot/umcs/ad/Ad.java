@@ -23,10 +23,12 @@ public class Ad {
     private String title;
     private String description;
     private int price_in_cents;
-    private LocalDateTime created_at;
+    //private LocalDateTime created_at;
 
     public Ad(String title, String description, int price_in_cents, LocalDateTime created_at) {
+
         this.title = title;
+        this.description = description;
     }
 
     public Ad() {
