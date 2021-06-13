@@ -22,14 +22,14 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public void addNewStudent(Student student) {
-        Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
-        if (studentOptional.isPresent()) {
-            throw new IllegalStateException("email taken");
-        }
-        studentRepository.save(student);
-        System.out.println(student);
-    }
+//    public void addNewStudent(Student student) {
+//        Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
+//        if (studentOptional.isPresent()) {
+//            throw new IllegalStateException("email taken");
+//        }
+//        studentRepository.save(student);
+//        System.out.println(student);
+//    }
 
     public void deleteStudent(Long studentId) {
         boolean exists = studentRepository.existsById(studentId);

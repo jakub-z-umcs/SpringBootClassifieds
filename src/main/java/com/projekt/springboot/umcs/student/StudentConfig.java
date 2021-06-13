@@ -27,9 +27,9 @@ public class StudentConfig {
                     LocalDate.of(2003, Month.JANUARY, 2)
             );
 
-            repository.saveAll(
-                    List.of(student1, student2)
-            );
+//            repository.saveAll(
+//                    List.of(student1, student2)
+//            );
         };
     }
 }
