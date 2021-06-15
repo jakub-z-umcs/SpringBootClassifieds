@@ -1,5 +1,11 @@
 package com.projekt.springboot.umcs.ad;
 
+import com.projekt.springboot.umcs.category.Category;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,26 +15,26 @@ import java.time.Period;
 @Table
 public class Ad {
     @Id
-    @SequenceGenerator(
-            name = "ad_sequence",
-            sequenceName = "ad_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "ad_sequence"
-    )
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
+    private Long user_id;
     private int price_in_cents;
-    //private LocalDateTime created_at;
+    @CreationTimestamp
+    private LocalDateTime created_at;
+    @UpdateTimestamp
+    private LocalDateTime updated_at;
+
+    @ManyToOne
+    private Category category;
+
 
     public Ad(String title, String description, int price_in_cents, LocalDateTime created_at) {
-
         this.title = title;
         this.description = description;
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication();
+        this.user_id = userDetails.
     }
 
     public Ad() {

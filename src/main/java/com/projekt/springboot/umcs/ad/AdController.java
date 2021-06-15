@@ -9,7 +9,7 @@ import java.util.List;
 @RequestMapping(path="api/v1/ads")
 public class AdController {
 
-    private final com.projekt.springboot.umcs.ad.AdService adService;
+    private final AdService adService;
 
     @Autowired
     public AdController(AdService adService) {
@@ -39,7 +39,7 @@ public class AdController {
     @PatchMapping(path = "{id}")
     public void updateAd(
             @PathVariable("id") Long id,
-            @RequestParam(required = false) String title) {
+            @RequestParam(required = true) String title) {
         adService.updateAd(id, title);
     }
 }

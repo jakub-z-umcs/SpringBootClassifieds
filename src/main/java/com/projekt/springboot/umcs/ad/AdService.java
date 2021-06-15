@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class AdService {
 
-    private final com.projekt.springboot.umcs.ad.AdRepository adRepository;
+    private final AdRepository adRepository;
 
     @Autowired
     public AdService(AdRepository adRepository) {
