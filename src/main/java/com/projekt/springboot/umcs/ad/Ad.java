@@ -1,6 +1,7 @@
 package com.projekt.springboot.umcs.ad;
 
 import com.projekt.springboot.umcs.category.Category;
+import com.projekt.springboot.umcs.user.CustomUser;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,8 +34,8 @@ public class Ad {
     public Ad(String title, String description, int price_in_cents, LocalDateTime created_at) {
         this.title = title;
         this.description = description;
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication();
-        this.user_id = userDetails.
+        CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication();
+        this.user_id = (long) user.getUserID();
     }
 
     public Ad() {
