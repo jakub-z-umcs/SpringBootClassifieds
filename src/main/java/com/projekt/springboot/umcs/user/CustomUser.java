@@ -22,10 +22,12 @@ public class CustomUser extends User {
 
     public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
+        this.username = username;
     }
 
     public CustomUser() {
         super("wtf", "elo", new ArrayList<GrantedAuthority>());
+        this.username = "wtf";
     }
 
 

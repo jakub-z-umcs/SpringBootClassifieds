@@ -16,9 +16,4 @@ public class WebSecurityConfig extends
         super.configure(http);
         http.csrf().disable();
     }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/registration");
-    }
 }
