@@ -3,6 +3,7 @@ package com.projekt.springboot.umcs.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,8 +14,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("register")
-    public void registerUserAccount() {
-        CustomUser registered = userService.registerNewUserAccount("elo", "320");
+    public void registerUserAccount(@RequestParam(required = true) String login,
+                                    @RequestParam(required = true) String password) {
+        CustomUser registered = userService.registerNewUserAccount(login, password);
 
         // rest of the implementation
     }

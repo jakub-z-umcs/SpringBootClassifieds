@@ -18,8 +18,7 @@ public class UserService {
     private UserRepository repository;
 
     public CustomUser registerNewUserAccount(String login, String password) {
-        List<GrantedAuthority> permissions = new ArrayList<GrantedAuthority>();
-        CustomUser user = new CustomUser("test", "12345678", permissions);
+        CustomUser user = new CustomUser(login, password);
 
         return repository.save(user);
     }

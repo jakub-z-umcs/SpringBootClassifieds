@@ -1,7 +1,10 @@
 package com.projekt.springboot.umcs.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "users")
-public class CustomUser extends User {
+public class CustomUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,16 +21,15 @@ public class CustomUser extends User {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false, unique = true)
     private String password;
 
-    public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        super(username, password, authorities);
+    public CustomUser(String username, String password) {
         this.username = username;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public CustomUser() {
-        super("wtf", "elo", new ArrayList<GrantedAuthority>());
-        this.username = "wtf";
     }
 
 
