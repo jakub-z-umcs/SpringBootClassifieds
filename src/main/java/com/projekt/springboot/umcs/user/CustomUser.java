@@ -3,21 +3,33 @@ package com.projekt.springboot.umcs.user;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
+@Entity
+@Table(name = "users")
 public class CustomUser extends User {
 
-    private final int userID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public CustomUser(String username, String password, boolean enabled, boolean accountNonExpired,
-                      boolean credentialsNonExpired,
-                      boolean accountNonLocked,
-                      Collection<? extends GrantedAuthority> authorities, int userID) {
-        super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-        this.userID = userID;
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    private String password;
+
+    public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
     }
 
-    public int getUserID() {
-        return userID;
+    public CustomUser() {
+        super("wtf", "elo", new ArrayList<GrantedAuthority>());
+    }
+
+
+    public Long getUserID() {
+        return id;
     }
 }
