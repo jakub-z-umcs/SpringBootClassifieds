@@ -13,6 +13,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SecurityService securityService;
+
     @PostMapping("register")
     public void registerUserAccount(@RequestParam(required = true) String login,
                                     @RequestParam(required = true) String password) {
