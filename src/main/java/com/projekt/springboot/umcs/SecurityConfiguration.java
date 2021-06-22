@@ -30,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .anyRequest().permitAll()
+                .antMatchers("/api/v1/auth/register").permitAll()
                 .and().formLogin();
     }
 
