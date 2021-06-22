@@ -1,17 +1,6 @@
 package com.projekt.springboot.umcs.ad;
 
-import com.projekt.springboot.umcs.category.Category;
-import com.projekt.springboot.umcs.user.CustomUser;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
 
 @Entity
 @Table
