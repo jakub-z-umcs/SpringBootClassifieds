@@ -19,6 +19,7 @@ public class MyUserDetailService implements UserDetailsService{
         CustomUser user = userRepository.findByUsername(username);
         if (user == null) throw new UsernameNotFoundException(username);
 
+        System.out.println("###############\nWWOW");
 
         return new CustomUser(user.getUsername(), user.getPassword());
     }

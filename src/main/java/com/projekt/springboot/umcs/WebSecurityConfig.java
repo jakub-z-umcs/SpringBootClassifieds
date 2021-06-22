@@ -26,15 +26,14 @@ public class WebSecurityConfig extends
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/api/v1/auth/register").permitAll()
+                .antMatchers("/", "/api/v1/auth/register", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // login
                 .csrf().disable().formLogin()
-                .loginPage("/login")
-                .failureForwardUrl("/nie-dziala")
-                .successForwardUrl("/dziala");
+                .loginPage("/login-page")
+                .loginProcessingUrl("/login").permitAll()
+                .usernameParameter("username").passwordParameter("password");
 
     }
 
