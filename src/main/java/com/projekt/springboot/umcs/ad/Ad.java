@@ -30,8 +30,12 @@ public class Ad {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "category_id", nullable=false)
     private Category category;
+//
+//    @Column(name = "category_id")
+//    private Long categoryId;
 
 
     public Ad(String title, String description) {
@@ -87,4 +91,12 @@ public class Ad {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+//    public Long getCategoryId() {
+//        return categoryId;
+//    }
+//
+//    public void setCategoryId(Long categoryId) {
+//        this.categoryId = categoryId;
+//    }
 }
