@@ -37,9 +37,6 @@ public class Ad {
             joinColumns = @JoinColumn(name = "ad_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     Set<Category> categories;
-//
-//    @Column(name = "category_id")
-//    private Long categoryId;
 
 
     public Ad(String title, String description) {
@@ -88,4 +85,11 @@ public class Ad {
         this.updatedAt = updatedAt;
     }
 
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 }

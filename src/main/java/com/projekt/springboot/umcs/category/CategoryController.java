@@ -25,21 +25,4 @@ public class CategoryController {
     public Category getOne(@PathVariable("id") Long id) {
         return categoryService.getOne(id);
     }
-
-    @PostMapping
-    public void addNew(@RequestBody Category category) {
-        categoryService.addNew(category);
-    }
-
-    @DeleteMapping(path = "{id}")
-    public void delete(@PathVariable("id") Long id) {
-        categoryService.delete(id);
-    }
-
-    @PatchMapping(path = "{id}")
-    public void update(
-            @PathVariable("id") Long id,
-            @RequestParam(required = true) String name) {
-        categoryService.update(id, name);
-    }
 }
