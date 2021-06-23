@@ -31,8 +31,6 @@ public class AdService {
 
     public void addNewAd(Ad ad) {
         MyUserDetails user = (MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("#######");
-        System.out.println(user);
         ad.setUserId(user.getId());
         adRepository.save(ad);
     }

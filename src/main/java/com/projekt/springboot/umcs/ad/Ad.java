@@ -1,6 +1,11 @@
 package com.projekt.springboot.umcs.ad;
 
+import com.projekt.springboot.umcs.category.Category;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -18,18 +23,18 @@ public class Ad {
     private Long id;
     private String title;
     private String description;
-    private Long user_id;
-    private int price_in_cents;
-//    @CreationTimestamp
-//    private LocalDateTime created_at;
-//    @UpdateTimestamp
-//    private LocalDateTime updated_at;
+    private Long userId;
+    private int priceInCents;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
-//    @ManyToOne
-//    private Category category;
+    @ManyToOne
+    private Category category;
 
 
-    public Ad(String title, String description, int price_in_cents) {
+    public Ad(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -46,16 +51,40 @@ public class Ad {
     }
 
     public Long getUserId() {
-        return user_id;
+        return userId;
     }
 
-    public void setUserId(Long user_id) { this.user_id = user_id; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
     public int getPriceInCents() {
-        return price_in_cents;
+        return priceInCents;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
