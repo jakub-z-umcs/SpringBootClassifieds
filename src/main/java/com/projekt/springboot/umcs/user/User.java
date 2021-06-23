@@ -11,13 +11,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique=true)
     private String username;
     private String password;
     private boolean active;
     private String roles;
 
-    @ManyToMany(mappedBy = "likedBy")
-    Set<Ad> userFavourites;
+    @ManyToMany(mappedBy = "likedBy", fetch = FetchType.EAGER)
+    private Set<Ad> favourites;
 
     public Long getId() {
         return id;
@@ -57,5 +58,13 @@ public class User {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public Set<Ad> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(Set<Ad> favourites) {
+        this.favourites = favourites;
     }
 }

@@ -1,5 +1,6 @@
 package com.projekt.springboot.umcs.ad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projekt.springboot.umcs.category.Category;
 import com.projekt.springboot.umcs.user.User;
 import org.hibernate.annotations.CreationTimestamp;
@@ -98,5 +99,14 @@ public class Ad {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    @JsonIgnore
+    public Set<User> getLikedBy() {
+        return likedBy;
+    }
+
+    public void setLikedBy(Set<User> likedBy) {
+        this.likedBy = likedBy;
     }
 }

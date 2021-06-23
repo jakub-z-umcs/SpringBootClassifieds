@@ -1,5 +1,6 @@
 package com.projekt.springboot.umcs.user;
 
+import com.projekt.springboot.umcs.ad.Ad;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
@@ -16,9 +18,11 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private boolean active;
     private List<GrantedAuthority> authorities;
+    private Set<Ad> favourites;
 
     public MyUserDetails(User user) {
         this.id = user.getId();
+        this.favourites = user.getFavourites();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.active = user.isActive();
@@ -64,5 +68,9 @@ public class MyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return active;
+    }
+
+    public Set<Ad> getFavourites() {
+        return favourites;
     }
 }

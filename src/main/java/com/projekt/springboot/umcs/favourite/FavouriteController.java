@@ -1,31 +1,57 @@
 package com.projekt.springboot.umcs.favourite;
 
+import com.projekt.springboot.umcs.UserRepository;
+import com.projekt.springboot.umcs.ad.Ad;
+import com.projekt.springboot.umcs.ad.AdRepository;
+import com.projekt.springboot.umcs.ad.AdService;
+import com.projekt.springboot.umcs.user.MyUserDetails;
+import com.projekt.springboot.umcs.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
-@RequestMapping(path="api/v1/categories")
+@RequestMapping(path="api/v1/favourites")
 public class FavouriteController {
 
-    private final FavouriteService favouriteService;
+    private final AdService adService;
+    private final UserRepository userRepository;
+    private final AdRepository adRepository;
+
 
     @Autowired
-    public FavouriteController(FavouriteService favouriteService) {
-        this.favouriteService = favouriteService;
+    public FavouriteController(AdService adService, UserRepository userRepository, AdRepository adRepository) {
+        this.adService = adService;
+        this.userRepository = userRepository;
+        this.adRepository = adRepository;
     }
+
+
 
     @GetMapping
-    public List<Favourite> getAll() {
-        return favouriteService.getAll();
+    public Set<Ad> getAll() {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).orElse(null);
+        if(user != null) {
+            return user.getFavourites();
+        }
+        return new HashSet<Ad>();
     }
+//
+//    @GetMapping(path = "{id}")
+//    public Favourite getOne(@PathVariable("id") Long id) {
+//        return favouriteService.getOne(id);
+//    }
 
-    @GetMapping(path = "{id}")
-    public Favourite getOne(@PathVariable("id") Long id) {
-        return favouriteService.getOne(id);
+    @PostMapping
+    public void addNewFavourite(@RequestParam(required = true) Long adId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).orElse(null);
+        Ad ad = adService.getAd(adId);
+        ad.getLikedBy().add(user);
+        adRepository.save(ad);
     }
 }
