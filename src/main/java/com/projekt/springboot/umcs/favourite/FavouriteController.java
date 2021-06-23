@@ -40,11 +40,15 @@ public class FavouriteController {
         }
         return new HashSet<Ad>();
     }
-//
-//    @GetMapping(path = "{id}")
-//    public Favourite getOne(@PathVariable("id") Long id) {
-//        return favouriteService.getOne(id);
-//    }
+
+    @DeleteMapping(path = "{id}")
+    public void delete(@PathVariable("id") Long adId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).orElse(null);
+        Ad ad = adService.getAd(adId);
+        ad.getLikedBy().remove(user);
+        adRepository.save(ad);
+    }
 
     @PostMapping
     public void addNewFavourite(@RequestParam(required = true) Long adId) {
