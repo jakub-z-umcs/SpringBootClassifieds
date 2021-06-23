@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table
@@ -30,9 +31,12 @@ public class Ad {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToOne
-    @JoinColumn(name = "category_id", nullable=false)
-    private Category category;
+    @ManyToMany
+    @JoinTable(
+            name = "ad_category",
+            joinColumns = @JoinColumn(name = "ad_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    Set<Category> categories;
 //
 //    @Column(name = "category_id")
 //    private Long categoryId;
@@ -84,19 +88,4 @@ public class Ad {
         this.updatedAt = updatedAt;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-//    public Long getCategoryId() {
-//        return categoryId;
-//    }
-//
-//    public void setCategoryId(Long categoryId) {
-//        this.categoryId = categoryId;
-//    }
 }

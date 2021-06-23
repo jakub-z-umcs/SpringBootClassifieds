@@ -27,9 +27,9 @@ public class MyUserDetailsService implements UserDetailsService {
         return user.map(MyUserDetails::new).get();
     }
 
-    public User registerNewUserAccount(String login, String password) {
+    public User registerNewUserAccount(String username, String password) {
         User user = new User();
-        user.setUsername(login);
+        user.setUsername(username);
         user.setPassword(new BCryptPasswordEncoder().encode(password));
         user.setRoles("USER");
         user.setActive(true);

@@ -15,8 +15,8 @@ public class UserController {
     private MyUserDetailsService userService;
 
     @PostMapping("register")
-    public void registerUserAccount(@RequestParam(required = true) String login,
+    public void registerUserAccount(@RequestParam(required = true) String username,
                                     @RequestParam(required = true) String password) {
-        User registered = userService.registerNewUserAccount(login, password);
+        User registered = userService.registerNewUserAccount(username, password);
     }
 }

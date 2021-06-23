@@ -1,5 +1,6 @@
 package com.projekt.springboot.umcs.category;
 
+import com.projekt.springboot.umcs.ad.Ad;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table
@@ -23,6 +25,9 @@ public class Category {
     )
     private Long id;
     private String name;
+
+    @ManyToMany(mappedBy = "categories")
+    Set<Ad> ads;
 
     public Category(String name) {
         this.name = name;
