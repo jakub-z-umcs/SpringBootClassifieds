@@ -1,6 +1,9 @@
 package com.projekt.springboot.umcs.ad;
 
+import com.projekt.springboot.umcs.user.MyUserDetails;
+import com.projekt.springboot.umcs.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,6 +30,10 @@ public class AdService {
     }
 
     public void addNewAd(Ad ad) {
+        MyUserDetails user = (MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("#######");
+        System.out.println(user);
+        ad.setUserId(user.getId());
         adRepository.save(ad);
     }
 

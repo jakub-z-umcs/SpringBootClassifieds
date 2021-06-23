@@ -32,25 +32,9 @@ public class Ad {
     public Ad(String title, String description, int price_in_cents) {
         this.title = title;
         this.description = description;
-        this.price_in_cents = 100;
     }
 
     public Ad() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        CustomUser user = null;
-//        if(auth.isAuthenticated()) {
-//            user = (CustomUser) auth.getPrincipal();
-//        }
-//
-//        if (maybe_user != null) {
-//            user = (CustomUser) maybe_user;
-//        }
-//        CustomUser user = (CustomUser) maybe_user;
-        System.out.println("############");
-//        System.out.println(user);
-        System.out.println("############");
-//        this.user_id = (long) user.getUserID();
-        this.price_in_cents = 100;
     }
 
     public Long getId() {
@@ -64,6 +48,8 @@ public class Ad {
     public Long getUserId() {
         return user_id;
     }
+
+    public void setUserId(Long user_id) { this.user_id = user_id; }
 
     public int getPriceInCents() {
         return price_in_cents;
