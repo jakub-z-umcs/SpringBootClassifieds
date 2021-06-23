@@ -1,6 +1,9 @@
 package com.projekt.springboot.umcs.user;
 
+import com.projekt.springboot.umcs.ad.Ad;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -12,6 +15,9 @@ public class User {
     private String password;
     private boolean active;
     private String roles;
+
+    @ManyToMany(mappedBy = "likedBy")
+    Set<Ad> userFavourites;
 
     public Long getId() {
         return id;

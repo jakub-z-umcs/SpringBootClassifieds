@@ -1,6 +1,7 @@
 package com.projekt.springboot.umcs.ad;
 
 import com.projekt.springboot.umcs.category.Category;
+import com.projekt.springboot.umcs.user.User;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -38,6 +39,12 @@ public class Ad {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     Set<Category> categories;
 
+    @ManyToMany
+    @JoinTable(
+            name = "favourites",
+            joinColumns = @JoinColumn(name = "ad_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    Set<User> likedBy;
 
     public Ad(String title, String description) {
         this.title = title;
