@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/api/v1/auth/register").permitAll()
-                .and().formLogin();
+                .and().formLogin().loginProcessingUrl("/api/v1/auth/login");
     }
 
     @Bean
