@@ -1,7 +1,9 @@
 package com.projekt.springboot.umcs.ad;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.projekt.springboot.umcs.user.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +36,10 @@ public class AdController {
 
     @DeleteMapping(path = "{id}")
     public void deleteAd(@PathVariable("id") Long AdId) {
-        adService.deleteAd(AdId);
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(userDetails.getId() == adService.getAd(AdId).getUserId()) {
+            adService.deleteAd(AdId);
+        }
     }
 
     @PatchMapping(path = "{id}")
@@ -43,6 +48,10 @@ public class AdController {
             @RequestParam(required = true) String title,
             @RequestParam(required = true) String description,
             @RequestParam(required = true) int priceInCents) {
-        adService.updateAd(id, title, description, priceInCents);
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(userDetails.getId() == adService.getAd(id).getUserId()) {
+            adService.updateAd(id, title, description, priceInCents);
+        }
+
     }
 }
