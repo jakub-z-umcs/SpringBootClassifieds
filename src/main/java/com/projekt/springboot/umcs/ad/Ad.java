@@ -69,10 +69,6 @@ public class Ad {
 
     public void setUserId(Long userId) { this.userId = userId; }
 
-    public int getPriceInCents() {
-        return priceInCents;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -108,5 +104,21 @@ public class Ad {
 
     public void setLikedBy(Set<User> likedBy) {
         this.likedBy = likedBy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPriceInCents(int priceInCents) {
+        this.priceInCents = priceInCents;
+    }
+
+    public int getPriceInCents() {
+        return priceInCents;
     }
 }
