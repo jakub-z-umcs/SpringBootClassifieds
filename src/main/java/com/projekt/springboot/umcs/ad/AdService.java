@@ -52,5 +52,9 @@ public class AdService {
 
         ad.setTitle(title);
     }
+
+    public List<Ad> getAllByCategoryId(Long id) {
+        return adRepository.findByCategory(id);
+    }
 }
 
