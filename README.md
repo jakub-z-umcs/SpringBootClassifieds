@@ -1,5 +1,7 @@
 # SpringBootClassifieds
 
+Aplikacja do ogłoszeń lokalnych.
+
 ## Dokumentacja
 - POST /api/v1/auth/register - Dodaje użytkownika do bazy danych.
 ```
