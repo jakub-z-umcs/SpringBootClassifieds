@@ -46,11 +46,13 @@ public class AdService {
     }
 
     @Transactional
-    public void updateAd(Long id, String title) {
+    public void updateAd(Long id, String title, String description, int priceInCents) {
         Ad ad = adRepository.findById(id).orElseThrow(() -> new IllegalStateException(
                 "Ad with id " + id + " does not exist"));
 
         ad.setTitle(title);
+        ad.setDescription(description);
+        ad.setPriceInCents(priceInCents);
     }
 
     public List<Ad> getAllByCategoryId(Long id) {

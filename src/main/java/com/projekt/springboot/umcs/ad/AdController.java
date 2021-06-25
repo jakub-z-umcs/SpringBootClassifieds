@@ -1,5 +1,6 @@
 package com.projekt.springboot.umcs.ad;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,9 @@ public class AdController {
     @PatchMapping(path = "{id}")
     public void updateAd(
             @PathVariable("id") Long id,
-            @RequestParam(required = true) String title) {
-        adService.updateAd(id, title);
+            @RequestParam(required = true) String title,
+            @RequestParam(required = true) String description,
+            @RequestParam(required = true) int priceInCents) {
+        adService.updateAd(id, title, description, priceInCents);
     }
 }

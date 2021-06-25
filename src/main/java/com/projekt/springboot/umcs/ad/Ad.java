@@ -1,6 +1,7 @@
 package com.projekt.springboot.umcs.ad;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.projekt.springboot.umcs.category.Category;
 import com.projekt.springboot.umcs.user.User;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Ad {
     @Id
     @SequenceGenerator(
@@ -46,11 +48,6 @@ public class Ad {
             joinColumns = @JoinColumn(name = "ad_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     Set<User> likedBy;
-
-    public Ad(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
 
     public Ad() {
     }

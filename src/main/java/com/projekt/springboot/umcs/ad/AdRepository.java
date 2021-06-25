@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 public interface AdRepository
         extends JpaRepository<Ad, Long> {
-//    List<Ad> findByCategoriesContains(Long id);
 
     @Query("select a from Ad a join a.categories c where c.id = :category_id")
     List<Ad> findByCategory(@Param("category_id")Long category_id);
