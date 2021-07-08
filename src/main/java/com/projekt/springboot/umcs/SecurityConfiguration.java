@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -46,6 +48,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginProcessingUrl("/api/v1/auth/login")
                 .successHandler((req, resp, auth) -> resp.setStatus(SC_OK))
                 .failureHandler((req, resp, ex) -> resp.setStatus(SC_BAD_REQUEST)).and();
+    }
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        return new CommonsMultipartResolverMine();
+    }
+
+
+    public static class CommonsMultipartResolverMine extends CommonsMultipartResolver {
+
+        @Override
+        public boolean isMultipart(HttpServletRequest request) {
+            final String header = request.getHeader("Content-Type");
+            if(header == null){
+                return false;
+            }
+            return header.contains("multipart/form-data");
+        }
+
     }
 
 
