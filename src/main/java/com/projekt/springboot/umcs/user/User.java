@@ -1,5 +1,6 @@
 package com.projekt.springboot.umcs.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projekt.springboot.umcs.ad.Ad;
 
 import javax.persistence.*;
@@ -36,6 +37,7 @@ public class User {
         this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }

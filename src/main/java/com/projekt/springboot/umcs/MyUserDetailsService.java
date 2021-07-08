@@ -36,4 +36,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
         return userRepository.save(user);
     }
+
+    public User getUserInfo(Long userId) {
+        return userRepository.getById(userId);
+    }
 }

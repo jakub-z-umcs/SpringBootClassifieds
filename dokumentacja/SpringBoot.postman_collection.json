@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a6a0f211-cbd7-4975-8b53-c01881cabfd0",
+		"_postman_id": "7e5f54de-9892-47f3-a7d6-2c7d8f7ec3e4",
 		"name": "SpringBoot",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -311,26 +311,6 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "title",
-							"value": "wow",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "ech",
-							"type": "text"
-						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://127.0.0.1:8080/api/v1/ads/1",
 					"protocol": "http",
@@ -421,22 +401,9 @@
 		},
 		{
 			"name": "all favourites",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "adId",
-							"value": "1",
-							"type": "text"
-						}
-					]
-				},
 				"url": {
 					"raw": "http://127.0.0.1:8080/api/v1/favourites",
 					"protocol": "http",

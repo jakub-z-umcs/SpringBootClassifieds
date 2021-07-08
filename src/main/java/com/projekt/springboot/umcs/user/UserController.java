@@ -1,11 +1,10 @@
 package com.projekt.springboot.umcs.user;
 
 import com.projekt.springboot.umcs.MyUserDetailsService;
+import com.projekt.springboot.umcs.ad.Ad;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -19,4 +18,11 @@ public class UserController {
                                     @RequestParam(required = true) String password) {
         User registered = userService.registerNewUserAccount(username, password);
     }
+
+    @GetMapping("info")
+    public User getUserInfo() {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userService.getUserInfo(userDetails.getId());
+    }
+
 }
