@@ -61,10 +61,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         public boolean isMultipart(HttpServletRequest request) {
             final String header = request.getHeader("Content-Type");
-            if(header == null){
-                return false;
-            }
-            return header.contains("multipart/form-data");
+//            if(header == null){
+//                return false;
+//            }
+            return header.contains("application/json");
         }
 
     }
